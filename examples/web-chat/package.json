@@ -1,0 +1,63 @@
+{
+  "name": "web-chat",
+  "version": "0.1.0",
+  "private": true,
+  "homepage": "/js-waku",
+  "dependencies": {
+    "@livechat/ui-kit": "*",
+    "js-waku": "../../build/main",
+    "react": "^16.14.0",
+    "react-dom": "^16.14.0",
+    "server-name-generator": "^1.0.5",
+    "web-vitals": "^1.1.1"
+  },
+  "devDependencies": {
+    "@testing-library/jest-dom": "^5.11.10",
+    "@testing-library/react": "^11.2.6",
+    "@testing-library/user-event": "^12.8.3",
+    "@types/jest": "^26.0.22",
+    "@types/node": "^12.20.7",
+    "@types/react": "^17.0.3",
+    "@types/react-dom": "^17.0.3",
+    "cspell": "^5.3.12",
+    "gh-pages": "^3.1.0",
+    "npm-run-all": "^4.1.5",
+    "prettier": "^2.2.1",
+    "react-scripts": "4.0.3",
+    "typescript": "^4.2.4"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test:unit": "react-scripts test",
+    "eject": "react-scripts eject",
+    "fix": "run-s fix:*",
+    "test": "run-s build test:*",
+    "test:lint": "eslint src --ext .ts --ext .tsx",
+    "test:prettier": "prettier \"src/**/*.{ts,tsx}\" \"./*.json\" --list-different",
+    "test:spelling": "cspell \"{README.md,.github/*.md,src/**/*.{ts,tsx},public/**/*.html}\" -c ../../.cspell.json",
+    "fix:prettier": "prettier \"src/**/*.{ts,tsx}\" \"./*.json\" --write",
+    "fix:lint": "eslint src --ext .ts --ext .tsx --fix",
+    "js-waku:build": "cd ../; npm run build",
+    "predeploy": "run-s js-waku:build build",
+    "deploy": "gh-pages -d build"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
+}

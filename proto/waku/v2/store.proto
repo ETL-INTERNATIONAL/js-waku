@@ -1,0 +1,43 @@
+syntax = "proto3";
+
+package waku.v2;
+
+import "waku/v2/message.proto";
+
+message Index {
+  bytes digest = 1;
+  double received_time = 2;
+}
+
+message PagingInfo {
+  uint64 page_size = 1;
+  Index cursor = 2;
+  enum Direction {
+    DIRECTION_BACKWARD_UNSPECIFIED = 0;
+    DIRECTION_FORWARD = 1;
+  }
+  Direction direction = 3;
+}
+
+message ContentFilter {
+  string content_topic = 1;
+}
+
+message HistoryQuery {
+  optional string pubsub_topic = 2;
+  repeated ContentFilter content_filters = 3;
+  optional PagingInfo paging_info = 4;
+  optional double start_time = 5;
+  optional double end_time = 6;
+}
+
+message HistoryResponse {
+  repeated WakuMessage messages = 1;
+  PagingInfo paging_info = 2;
+}
+
+message HistoryRPC {
+  string request_id = 1;
+  HistoryQuery query = 2;
+  HistoryResponse response = 3;
+}
